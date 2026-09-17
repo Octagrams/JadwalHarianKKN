@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1B2A5B" />
+  <meta name="description" content="Jadwal piket, belanja, dan masak harian posko KKN." />
+  <title>Jadwal Harian KKN</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     TOPBAR — identitas posko + pemilih "nama saya"
+     ============================================================ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">KKN</span>
+      <span class="brand-text">
+        <strong>Jadwal Harian</strong>
+        <small id="brand-desa">Posko KKN</small>
+      </span>
+    </div>
+
+    <button id="btn-saya" class="me-chip" type="button">
+      <span class="me-avatar" id="me-avatar" aria-hidden="true">?</span>
+      <span class="me-label" id="me-label">Pilih namamu</span>
+    </button>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- ============================================================
+       HERO — apa yang harus dikerjakan HARI INI
+       ============================================================ -->
+  <section class="today" aria-labelledby="today-heading">
+    <p class="today-eyebrow" id="today-date">—</p>
+    <h1 class="today-day" id="today-day">Hari ini</h1>
+    <p class="today-note" id="today-note" aria-live="polite"></p>
+
+    <ul class="today-list" id="today-list">
+      <!-- diisi script.js -->
+    </ul>
+  </section>
+
+  <!-- ============================================================
+       TAB JADWAL — pengganti dropdown
+       ============================================================ -->
+  <nav class="tabs" aria-label="Pilih jenis jadwal">
+    <div class="tabs-scroll" id="tabs" role="tablist">
+      <!-- diisi script.js -->
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       DAFTAR HARI — pengganti tabel
+       ============================================================ -->
+  <section class="schedule" aria-labelledby="judul-jadwal">
+    <div class="schedule-head">
+      <h2 id="judul-jadwal">Jadwal</h2>
+      <p class="schedule-hint">Ketuk satu hari untuk mengubah petugasnya.</p>
+    </div>
+
+    <ol class="day-list" id="day-list">
+      <!-- diisi script.js -->
+    </ol>
+  </section>
+
+  <!-- ============================================================
+       AKSI
+       ============================================================ -->
+  <section class="actions" aria-label="Simpan dan bagikan jadwal">
+    <button id="btn-bagikan" class="btn btn-primary" type="button">Bagikan sebagai gambar</button>
+    <div class="actions-row">
+      <button id="btn-pdf" class="btn btn-quiet" type="button">Unduh PDF</button>
+      <button id="btn-print" class="btn btn-quiet" type="button">Cetak</button>
+    </div>
+    <button id="btn-reset" class="btn btn-link" type="button">Kembalikan ke jadwal awal</button>
+  </section>
+
+  <p class="page-foot">
+    <span id="jumlah-anggota">0</span> anggota terdaftar &middot; perubahan tersimpan di HP ini
+  </p>
+</main>
+
+<!-- ============================================================
+     BOTTOM SHEET — dipakai untuk edit hari & pilih nama saya
+     ============================================================ -->
+<div class="sheet-root" id="sheet-root" hidden>
+  <div class="sheet-scrim" id="sheet-scrim"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet-grip" aria-hidden="true"></div>
+    <header class="sheet-head">
+      <div>
+        <p class="sheet-kicker" id="sheet-kicker"></p>
+        <h2 class="sheet-title" id="sheet-title"></h2>
+      </div>
+      <button class="sheet-close" id="sheet-close" type="button" aria-label="Tutup">&times;</button>
+    </header>
+    <div class="sheet-body" id="sheet-body"></div>
+    <footer class="sheet-foot" id="sheet-foot"></footer>
+  </div>
+</div>
+
+<!-- Pesan singkat setelah aksi -->
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<!-- Kartu bersih khusus untuk export/print. Disembunyikan di luar layar. -->
+<div class="export-stage" id="export-stage" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
