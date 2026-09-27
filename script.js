@@ -58,7 +58,7 @@ const daftarJadwal = [
    BAGIAN 1.4 — DATA JADWAL
    Setiap baris: { hari, nama: [], keterangan: "" }
    ========================================================================= */
-const HARI = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+const HARI = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"];
 
 const jadwalData = {
   "piket-posko": [
@@ -67,8 +67,6 @@ const jadwalData = {
     { hari: "Rabu",   nama: ["Risma Setianingrum", "Agdilla Syahba Arzetinindya"], keterangan: "" },
     { hari: "Kamis",  nama: ["Ferdiansyah Ibnu Putra", "Khilmatunnisa"], keterangan: "" },
     { hari: "Jumat",  nama: ["Anisa Annabila", "Naomi Tiurma Riandi"], keterangan: "" },
-    { hari: "Sabtu",  nama: ["Firda Arinanda Cahyani"], keterangan: "Cewek" },
-    { hari: "Minggu", nama: ["Wisik Adi Panuntun"], keterangan: "Cowok" }
   ],
 
   "piket-balai": [
@@ -77,8 +75,6 @@ const jadwalData = {
     { hari: "Rabu",   nama: ["Risma Setianingrum", "Agdilla Syahba Arzetinindya"], keterangan: "" },
     { hari: "Kamis",  nama: ["Wisik Adi Panuntun", "Cut Anastasya Nurul Hilal"], keterangan: "" },
     { hari: "Jumat",  nama: ["Ahmad Ridho Pambudi", "Firda Arinanda Cahyani"], keterangan: "" },
-    { hari: "Sabtu",  nama: [], keterangan: "Cowok" },
-    { hari: "Minggu", nama: [], keterangan: "Belum diatur" }
   ],
 
   "beli-bahan": [
@@ -87,8 +83,6 @@ const jadwalData = {
     { hari: "Rabu",   nama: ["Khilmatunnisa"], keterangan: "" },
     { hari: "Kamis",  nama: ["Wisik Adi Panuntun", "Cut Anastasya Nurul Hilal"], keterangan: "" },
     { hari: "Jumat",  nama: ["Naomi Tiurma Riandi"], keterangan: "" },
-    { hari: "Sabtu",  nama: ["Risma Setianingrum"], keterangan: "" },
-    { hari: "Minggu", nama: ["Ahmad Ridho Pambudi", "Anisa Annabila"], keterangan: "" }
   ],
 
   "jadwal-masak": [
@@ -97,8 +91,6 @@ const jadwalData = {
     { hari: "Rabu",   nama: ["Ferdiansyah Ibnu Putra", "Anisa Annabila"], keterangan: "" },
     { hari: "Kamis",  nama: ["Firda Arinanda Cahyani", "Agdilla Syahba Arzetinindya"], keterangan: "" },
     { hari: "Jumat",  nama: ["Risma Setianingrum", "Khilmatunnisa"], keterangan: "" },
-    { hari: "Sabtu",  nama: [SEMUA], keterangan: "" },
-    { hari: "Minggu", nama: [SEMUA], keterangan: "" }
   ]
 };
 
@@ -180,7 +172,7 @@ function simpanJadwal() {
    tersimpan selamanya.
    ========================================================================= */
 const KEY_SELESAI = "kkn:selesai:v1";
-const URUTAN_HARI = { Senin: 0, Selasa: 1, Rabu: 2, Kamis: 3, Jumat: 4, Sabtu: 5, Minggu: 6 };
+const URUTAN_HARI = { Senin: 0, Selasa: 1, Rabu: 2, Kamis: 3, Jumat: 4};
 
 let selesaiData = {};
 try { selesaiData = JSON.parse(bacaPenyimpanan(KEY_SELESAI) || "{}") || {}; }
@@ -277,7 +269,7 @@ function esc(teks) {
 
 function hariIni() {
   // getDay(): 0 = Minggu ... 6 = Sabtu
-  const peta = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+  const peta = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat",];
   return peta[new Date().getDay()];
 }
 
@@ -1257,7 +1249,6 @@ el.tabs.addEventListener("keydown", function (event) {
   el.tabs.querySelector('[aria-selected="true"]').focus();
 });
 
-// Ketuk satu hari untuk mengedit
 el.dayList.addEventListener("click", function (event) {
   const cek = event.target.closest(".day-check");
   if (cek) {
@@ -1270,7 +1261,6 @@ el.dayList.addEventListener("click", function (event) {
   if (kartu) bukaEditHari(jadwalAktif, kartu.dataset.hari);
 });
 
-// Interaksi di dalam sheet
 el.sheetBody.addEventListener("click", function (event) {
   const chip = event.target.closest(".name-chip");
   const preset = event.target.closest(".ket-preset");
@@ -1318,7 +1308,6 @@ el.btnPdf.addEventListener("click", unduhPDF);
 el.btnPrint.addEventListener("click", function () { window.print(); });
 el.btnReset.addEventListener("click", bukaKonfirmasiReset);
 
-// Kalau aplikasi dibuka semalaman, hari ini ikut diperbarui saat kembali aktif.
 let hariTerakhir = hariIni();
 document.addEventListener("visibilitychange", function () {
   if (document.visibilityState !== "visible") return;
